@@ -1,0 +1,7 @@
+The Bi-Directional Pigeonhole Constraint: Explicitly detail how you engineered the max(n_out, n_in) floor to prevent terminal filter collapse and maintain bi-directional gradient flow during the dynamic pruning phase. This shows deep systems-level awareness.The Kaiming Variance Rescue: Explain the mathematical necessity of rescaling the surviving weights by $\sqrt{\frac{1}{\text{density}}}$ to prevent signal death at 99.5% initialization.The CSR Deployment Architecture: Conclude with the exact physical application. Detail how the finalized, static MBPA binary masks can be translated into Compressed Sparse Row (CSR) format.
+
+
+
+
+
+Paint the final picture: By dropping 99.5% of the memory footprint and converting to CSR, this specific ResNet-18 model is now capable of real-time, low-latency inference on severely constrained edge hardware, such as an ESP32-powered multi-purpose biometric wearable, bypassing the need for cloud-compute offloading entirely.
