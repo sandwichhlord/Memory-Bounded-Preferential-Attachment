@@ -11,11 +11,11 @@ Deep learning is moving fast toward extreme edge deployment (think ESP32 microco
 Something more interesting is that standard dynamic sparse training methods (like SET and **RigL** (Rigging the Lottery by Google)) are basically *topologically blind*. Methods such as RigL and SNFS (Sparse Networks from Scratch) try to hit these optimal structures just by chasing gradients. 
 
 
-But to keep that accuracy up, they completely sacrifice their physical shape. The network's internal structure basically falls apart. SET turns into an inefficient bell curve, while RigL begins to fail to concentrate its connections, fracturing into a scattered, decentralized web where no single node gets big enough to act as a proper routing center. Sure, these fragmented, hub-less shapes compute perfectly fine on a massive GPU, but they may wreck hardware cache predictability—making them more disadvantageous to actually deploy on memory-starved edge silicon.
+But to keep that accuracy up, they completely sacrifice their physical shape. The network's internal structure basically falls apart. SET turns into an inefficient bell curve, while RigL begins to fail to concentrate its connections, fracturing into a scattered, decentralized web where no single node gets big enough to act as a proper routing center. Sure, these fragmented, hub-less shapes compute perfectly fine on a massive GPU, but they may wreck hardware cache predictability-making them more disadvantageous to actually deploy on memory-starved edge silicon.
 
 ## The Solution: Memory-Bounded Preferential Attachment (MBPA)
 
-I took SET's core idea—that power-law networks are the optimal state for sparsity—but stopped leaving the structure up to chance. 
+I took SET's core idea-that power-law networks are the optimal state for sparsity-but stopped leaving the structure up to chance. 
 
 
 By using a Preferential Attachment mechanism bounded by strict layer-wise hardware caps ($C_{max}$), this engine forces a **Capacity-Constrained Heavy-Tailed Topology**. Instead of smoothly dying off, the strict memory limits cause a structural "pile-up." This builds a dense, hyper-efficient cluster of saturated hub nodes right at the hardware limit, keeping the routing robust and maxed out even when 99.5% of the network is mathematically starved.
@@ -49,7 +49,7 @@ Standard dynamic sparse algorithms usually need heavy global sorting or dense gr
 ## Empirical Validation & Topological Phase Transitions
 
 ![3x3 Bell Curve vs Truncated PL](Thesis_Eval/loglog_global_fitted/LogLog_Fitted_Sparsity_99.5.png)
-*(Above: Mapping the topological phase transition at extreme sparsity. You can clearly see SET collapsing into a bell curve, while MBPA keeps a resilient heavy-tail. The biggest takeaway here is that RigL fails to concentrate its connections, meaning MBPA achieves way larger max-degree hubs—proving it is much better suited for hardware cache reuse.)*
+*(Above: Mapping the topological phase transition at extreme sparsity. You can clearly see SET collapsing into a bell curve, while MBPA keeps a resilient heavy-tail. The biggest takeaway here is that RigL fails to concentrate its connections, meaning MBPA achieves way larger max-degree hubs-proving it is much better suited for hardware cache reuse.)*
 
 * **Maximum Likelihood Estimation (MLE):** Successfully pulled the scale-free parameters ($\gamma \approx 1.0$) and tight hardware exponential cutoffs ($\lambda \approx 0.01$) right from the MBPA sparse masks.
 
